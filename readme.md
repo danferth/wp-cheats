@@ -6,13 +6,13 @@ WP cheats
 
 ## get the `URL` of...
 
-| function              | usage                                     | output                                                     |
-| ------------------    | ----------------------------------------- | -----------------------------------------------------------|
-| home_url('/test/')    | Home URL (site address in settings)       | http://www.example.com/test                                |
-| includes_url()        | Includes directory URL                    | http://www.example.com/wp-includes                         |
-| content_url('/hello') | Content directory URL                     | http://www.example.com/wp-content/hello                         |
-| plugins_url()         | Plugins directory URL                     | http://www.example.com/wp-content/plugins                  |
-| wp_upload_dir()       | Upload directory URL *(returns an array)* | http://www.example.com/wp-content/uploads                  |
+| function              | usage                                     | output                                    |
+| ------------------    | ----------------------------------------- | ------------------------------------------|
+| home_url('/test/')    | Home URL (site address in settings)       | http://www.example.com/test               |
+| includes_url()        | Includes directory URL                    | http://www.example.com/wp-includes        |
+| content_url('/hello') | Content directory URL                     | http://www.example.com/wp-content/hello   |
+| plugins_url()         | Plugins directory URL                     | http://www.example.com/wp-content/plugins |
+| wp_upload_dir()       | Upload directory URL *(returns an array)* | http://www.example.com/wp-content/uploads |
 
 `home_url()` and `content_url()` do NOT return a trailing slash *i.e. http://www.example.com instead of http://www.example.com/*
 
