@@ -20,7 +20,7 @@ $prod_url = $content_url['baseurl']."/products/";
 
 `<?php get_home_url()`
 
-## Shortcoeds
+## Shortcodes
 ```
 //============[helloworld]==============================
 function helloworld_shortcode($atts, $content, $tag){
