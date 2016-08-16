@@ -51,4 +51,26 @@ function hello_shortcode($atts, $content = null, $tag){
 //add shortcode
 add_shortcode('hello', 'hello_shortcode');
 ```
+## Remove the base Open sans from wordpress
+*(to many fonts loaded!)* goes into a `functions.php` file in root of theme
+```
+<?php
+if(!function_exists('remove_wp_open_sans')) :
+    function remove_wp_open_sans(){
+        wp_deregister_style('open-sans');
+        wp_register_style('open-sans', false);
+    }
+    add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
+    add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
+    endif;
+?>
+```
 
+## stop wp from messing with content
+WP likes to mess with your `HTML` and add `<p>` tags and other crap. This takes care of that and goes into a `functions.php` file in root of theme.
+```
+<?php
+remove_filter('the_content', 'wpautop');
+remove_filter('the_excerpt', 'wpautop');
+?>
+```
