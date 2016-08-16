@@ -7,7 +7,7 @@ WP cheats
 ## get the `URL` of...
 
 | function        | usage                                   | output                                                     |
-| ............... | ....................................... | .......................................................... |
+| --------------- | --------------------------------------- | -----------------------------------------------------------|
 | home_url()      | Home URL                                | http://www.example.com                                     |
 | site_url()      | Site directory URL                      | http://www.example.com or http://www.example.com/wordpress |
 | admin_url()     | Admin directory URL                     | http://www.example.com/wp-admin                            |
