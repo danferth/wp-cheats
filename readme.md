@@ -5,6 +5,7 @@ WP cheats
 `<?php echo do_shortcode("[shortcode]"); ?>`
 
 ## get the `URL` of...
+
 | function        | usage                                   | output                                                     |
 | ............... | ....................................... | .......................................................... |
 | home_url()      | Home URL                                | http://www.example.com                                     |
