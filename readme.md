@@ -5,15 +5,16 @@ WP cheats
 `<?php echo do_shortcode("[shortcode]"); ?>`
 
 ## get the `URL` of...
-||function||usage||output|
-|home_url()|Home URL|http://www.example.com|
-|site_url()|Site directory URL|http://www.example.com or http://www.example.com/wordpress|
-|admin_url()|Admin directory URL|http://www.example.com/wp-admin|
-|includes_url()|Includes directory URL|http://www.example.com/wp-includes|
-|content_url()|Content directory URL|http://www.example.com/wp-content|
-|plugins_url()|Plugins directory URL|http://www.example.com/wp-content/plugins|
-|theme_url()|Themes directory URL (#18302)|http://www.example.com/wp-content/themes|
-|wp_upload_dir()|Upload directory URL (returns an array)|http://www.example.com/wp-content/uploads|
+|function       |usage                                  |output                                                    |
+|...............|.......................................|..........................................................|
+|home_url()     |Home URL                               |http://www.example.com                                    |
+|site_url()     |Site directory URL                     |http://www.example.com or http://www.example.com/wordpress|
+|admin_url()    |Admin directory URL                    |http://www.example.com/wp-admin                           |
+|includes_url() |Includes directory URL                 |http://www.example.com/wp-includes                        |
+|content_url()  |Content directory URL                  |http://www.example.com/wp-content                         |
+|plugins_url()  |Plugins directory URL                  |http://www.example.com/wp-content/plugins                 |
+|theme_url()    |Themes directory URL (#18302)          |http://www.example.com/wp-content/themes                  |
+|wp_upload_dir()|Upload directory URL (returns an array)|http://www.example.com/wp-content/uploads                 |
 
 
 
