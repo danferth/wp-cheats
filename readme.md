@@ -6,32 +6,24 @@ WP cheats
 
 ## get the `URL` of...
 
-| function        | usage                                   | output                                                     |
-| --------------- | --------------------------------------- | -----------------------------------------------------------|
-| home_url()      | Home URL                                | http://www.example.com                                     |
-| site_url()      | Site directory URL                      | http://www.example.com or http://www.example.com/wordpress |
-| admin_url()     | Admin directory URL                     | http://www.example.com/wp-admin                            |
-| includes_url()  | Includes directory URL                  | http://www.example.com/wp-includes                         |
-| content_url()   | Content directory URL                   | http://www.example.com/wp-content                          |
-| plugins_url()   | Plugins directory URL                   | http://www.example.com/wp-content/plugins                  |
-| theme_url()     | Themes directory URL (#18302)           | http://www.example.com/wp-content/themes                   |
-| wp_upload_dir() | Upload directory URL (returns an array) | http://www.example.com/wp-content/uploads                  |
+| function              | usage                                     | output                                                     |
+| ------------------    | ----------------------------------------- | -----------------------------------------------------------|
+| home_url('/test/')    | Home URL (site address in settings)       | http://www.example.com/test                                |
+| includes_url()        | Includes directory URL                    | http://www.example.com/wp-includes                         |
+| content_url('/hello') | Content directory URL                     | http://www.example.com/wp-content/hello                         |
+| plugins_url()         | Plugins directory URL                     | http://www.example.com/wp-content/plugins                  |
+| wp_upload_dir()       | Upload directory URL *(returns an array)* | http://www.example.com/wp-content/uploads                  |
 
+`home_url()` and `content_url()` do NOT return a trailing slash *i.e. http://www.example.com instead of http://www.example.com/*
 
-
-### the *content* dir
-`<?php content_url() ?>`
 
 ### uploades directory
 ```
 <?php
-$content_url = wp_upload_dir();
-$prod_url = $content_url['baseurl']."/products/";
+$upload_array = wp_upload_dir();
+$upload_url = $upload_array['baseurl'];
 ?>
 ```
-### base `URL` of site
-
-`<?php get_home_url()`
 
 ## Shortcodes
 ```
@@ -64,6 +56,7 @@ function hello_shortcode($atts, $content = null, $tag){
 //add shortcode
 add_shortcode('hello', 'hello_shortcode');
 ```
+
 ## Remove the base Open sans from wordpress
 *(to many fonts loaded!)* goes into a `functions.php` file in root of theme
 ```
@@ -86,4 +79,23 @@ WP likes to mess with your `HTML` and add `<p>` tags and other crap. This takes 
 remove_filter('the_content', 'wpautop');
 remove_filter('the_excerpt', 'wpautop');
 ?>
+```
+
+## custom fields
+```
+/*
+here we are looking for a custom field called *ng_app* and using it in the template
+The plan is to set a custome variable called *ng_app* and have it set an attribute
+on a div for Angular injection
+
+//empty variable for custom field value
+$ng_app = "";
+
+//check to see if it's set
+if(get_post_meta($post->ID, "ng-app")){
+//grab custom field value and put into $ngApp variable
+$ngApp = get_post_meta($post->ID, "ng-app", true);
+//this example puts an attribute into a variable for easy placement into template
+$ng_app = "ng-app='" . $ngApp . "'";
+}
 ```
