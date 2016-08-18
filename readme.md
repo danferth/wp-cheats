@@ -26,6 +26,11 @@ $upload_url = $upload_array['baseurl'];
 ```
 
 ## Shortcodes
+
+`$atts` = an associative aray of attributes, or an empty string if no attirbutes are given;
+`$content` = the enclosed content (if the shorcode is used in its enclosing form)
+`$tag` = the shortcode tag, usefull for shared callback functions
+
 ```
 //============[helloworld]==============================
 function helloworld_shortcode($atts, $content, $tag){
