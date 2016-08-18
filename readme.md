@@ -109,7 +109,9 @@ $ng_app = "ng-app='" . $ngApp . "'";
 ```
 //wp_enq..('fileName', 'location of script', array('dependancy'), version, boolean for if requires dependancy loaded first)
 
+
 wp_enqueue_script('site', get_template_directory_uri() . '/assets/javascript/site.js', array('jquery'), '1.0.0', true);
+
 
 //so the above looks for site.js in assets/javascript, it needs jQuery, is version 1.0.0 and to load jQuery FIRST
 ```
