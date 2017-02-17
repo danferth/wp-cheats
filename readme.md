@@ -153,7 +153,7 @@ function trim_value(&$value){
 - add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file to use **(see code below)**
 
 ###file structure should look likes
-
+```
 - theme root
 -- form_parse
 --- PHPmailer
@@ -161,7 +161,7 @@ function trim_value(&$value){
 ---- error.txt
 ---- success.txt
 --- parse.php
-
+```
 ###Code to add to template
 ```
 <?php
