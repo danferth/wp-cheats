@@ -85,6 +85,21 @@ remove_filter('the_content', 'wpautop');
 remove_filter('the_excerpt', 'wpautop');
 ?>
 ```
+##returns full url with any querys
+```
+<?php
+function true_url(){
+    $output = "";
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'){
+        $output .= "https";
+    }else{
+        $output .= "http";
+    }
+    $output .= "://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    echo $output;
+};
+?>
+```
 
 ## custom fields
 ```
@@ -113,3 +128,9 @@ wp_enqueue_script('site', get_template_directory_uri() . '/assets/javascript/sit
 
 //so the above looks for site.js in assets/javascript, it needs jQuery, is version 1.0.0 and to load jQuery FIRST
 ```
+
+##for forms in WP withough plugins
+- create `form_parse` folder in root of theme to hold `parse.php` file to proccess the form.
+- in `form_parse` folder put [PHPmailer](https://github.com/PHPMailer/PHPMailer)
+- add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file
+- 
