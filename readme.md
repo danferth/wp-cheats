@@ -128,8 +128,24 @@ wp_enqueue_script('site', get_template_directory_uri() . '/assets/javascript/sit
 
 //so the above looks for site.js in assets/javascript, it needs jQuery, is version 1.0.0 and to load jQuery FIRST
 ```
+###to trim post data
+```
+<?php
+function trim_value(&$value){
+  if(gettype($value) == 'string'){
+    $value = trim($value);
+  }
+  if(gettype($value) == 'array'){
+      array_walk($value, 'trim_value');
+  }
+}
 
-##for forms in WP withough plugins
+//on form parse page
+<?php array_walk($_POST, 'trim_value'); ?>
+//now $_POST data is trimed further sanitize with filter_var();
+?>
+```
+##for forms in WP without plugins
 
 - create `form_parse` folder in root of theme to hold `parse.php` files to proccess forms.
 - in `form_parse` folder put [PHPmailer](https://github.com/PHPMailer/PHPMailer) to `include()` in `parse.php` files 
