@@ -130,7 +130,123 @@ wp_enqueue_script('site', get_template_directory_uri() . '/assets/javascript/sit
 ```
 
 ##for forms in WP withough plugins
-- create `form_parse` folder in root of theme to hold `parse.php` file to proccess the form.
-- in `form_parse` folder put [PHPmailer](https://github.com/PHPMailer/PHPMailer)
-- add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file
-- 
+
+- create `form_parse` folder in root of theme to hold `parse.php` files to proccess forms.
+- in `form_parse` folder put [PHPmailer](https://github.com/PHPMailer/PHPMailer) to `include()` in `parse.php` files 
+- add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file to use **(see code below)**
+- code form normally or use the template code below
+
+###Code to add to template
+```
+<?php
+/*
+Template Name: FORM Full Width
+
+//grab get and custom fields
+*/
+if(isset($_GET['success'])){
+	$form_success = $_GET['success'];
+}
+
+$first_name = $_GET['first_name'];
+
+if(get_post_meta($post->ID, "form-parse")){
+$parse = '/wp-content/themes/TIC/form-parse/' . get_post_meta($post->ID, "form-parse", true) . '.php';
+}
+
+if(get_post_meta($post->ID, "form-ID")){
+$form_id = get_post_meta($post->ID, "form-ID", true);
+}
+
+get_header(); ?>
+
+//start of WP loop and what not here...
+
+//then in the container for the_content(); goes
+<div class="entry-content">
+	<?php echo "<form action='" . $parse . "' method='POST' id='" . $form_id . "'>"; 
+				
+	/*
+	CUSTOM FIELDS NEEDED:
+	---------------------
+	form-parse 	= file name of parse file exclude '.php'
+	form_ID 		= ID of form used for form ID and jQuery validate
+	
+	EXTRA FILES NEEDED FOR THIS TO WORK:
+	------------------------------------
+	parse-$form-parse
+	'form name'-error.txt make sure this is on server and has permisions 770
+	
+	BASIC FORM SETUP
+	----------------
+	Note: first name field that gets passed must be $_GET['first_name'] 
+	
+	<input placeholder="label"> this is not required
+
+	<input placeholder="label" required>
+	
+	These do not require spans
+	--------------------------
+	<textarea>
+	<input type="submit">
+	*/
+	?>	
+			
+	<?php the_content(); ?>
+				
+	</form>
+				
+</div>
+
+//then at the bottom BEFORE get_footer(); goes
+
+//if useing sweetalert for success message use the below.
+//you have to return a query to the page so read the code and see what to do.
+<script type="text/javascript">
+<?php
+if($form_success == "true"){
+	echo "
+		window.onload = swal({
+			title: 'Success',
+			text: '<b>" . $first_name . "</b> your submission was a success we will contact you shortly about your inquiry!',
+			type: 'success',
+			html: true,
+			confirmButtonText: 'Thanks'
+		});
+	";
+}elseif($form_success == "false"){
+	echo "
+		window.onload = swal({
+			title: 'Whoops',
+			text: 'Our apologies but there was an error <b>" . $first_name . "</b>, we have logged this and will have a fix soon!',
+			type: 'error',
+			html: true,
+			confirmButtonText: 'OK'
+		});
+	";
+}
+
+?>
+//this used to work but safari had to go and be safari
+//basicaly we have to use jquery validate for this sence safari has support for form validation but no excecution of it.
+//forms with required fields get submited without error even if empty!
+//load JqueryValidate and the below will work or use your own browser fall validation. 
+//function hasHTML5validation(){
+//	return typeof document.createElement('input').checkValidity === 'function';
+//}
+//if(!hasHTML5validation() ){
+	<?php 
+	echo 'onload=function(){document.forms["' . $form_id .'"].reset()};
+		$(window).bind("load", function() {
+		$("#' . $form_id . '").validate();
+	});'; ?>
+//}
+</script>
+
+<?php get_footer(); ?>
+```
+
+###sample form parse code
+```
+
+```
