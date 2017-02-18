@@ -149,8 +149,8 @@ function trim_value(&$value){
 
 - create `form_parse` folder in root of theme to hold `parse.php` files to proccess forms.
 - in `form_parse` folder put [PHPmailer](https://github.com/PHPMailer/PHPMailer) to `include()` in `parse.php` files
-- in `form_parse` folder also have `logs` folder with `error.txt` & `success.txt` inside for logging email error and success.
-- add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file to use **(see code below)**
+- in `form_parse` folder also have `logs` folder with `error.txt` & `success.txt` *(both with permissions set to 770)* inside for logging email error and success.
+- add `custom fields` code to a form `template` to grab `#IDofForm` and `form-parse.php` file to use *(see code below)*
 
 ###file structure should look likes
 ```
@@ -177,7 +177,7 @@ if(isset($_GET['success'])){
 $first_name = $_GET['first_name'];
 
 if(get_post_meta($post->ID, "form-parse")){
-$parse = '/wp-content/themes/TIC/form-parse/' . get_post_meta($post->ID, "form-parse", true) . '.php';
+$parse = '/wp-content/themes/[theme name]/form-parse/' . get_post_meta($post->ID, "form-parse", true) . '.php';
 }
 
 if(get_post_meta($post->ID, "form-ID")){
@@ -198,33 +198,20 @@ get_header(); ?>
 	form-parse 	= file name of parse file exclude '.php'
 	form_ID 		= ID of form used for form ID and jQuery validate
 	
-	EXTRA FILES NEEDED FOR THIS TO WORK:
-	------------------------------------
-	parse-$form-parse
-	'form name'-error.txt make sure this is on server and has permisions 770
-	
 	BASIC FORM SETUP
 	----------------
-	Note: first name field that gets passed must be $_GET['first_name'] 
+	Note: first name field used for URL query so look into it if you don't need a first name in your form 
 	
-	<input placeholder="label"> this is not required
-
-	<input placeholder="label" required>
-	
-	These do not require spans
-	--------------------------
-	<textarea>
-	<input type="submit">
+	the content on the page will be the code for the form
+	I use fieldsets to keep it clean if i have <p>'s and stuff going on
 	*/
-	?>	
-			
-	<?php the_content(); ?>
+	<?php the_content(); ?> 
 				
 	</form>
 				
 </div>
 
-//then at the bottom BEFORE get_footer(); goes
+//===then at the bottom BEFORE get_footer(); goes
 
 //if useing sweetalert for success message use the below.
 //you have to return a query to the page so read the code and see what to do.
@@ -254,9 +241,9 @@ if($form_success == "true"){
 
 ?>
 //this used to work but safari had to go and be safari
-//basicaly we have to use jquery validate for this sence safari has support for form validation but no excecution of it.
+//basicaly we have to use jquery validate for this, safari has support for form validation but no excecution of it.
 //forms with required fields get submited without error even if empty!
-//load JqueryValidate and the below will work or use your own browser fall validation. 
+//load JqueryValidate and the below will work or use your own browser validation. 
 //function hasHTML5validation(){
 //	return typeof document.createElement('input').checkValidity === 'function';
 //}
