@@ -1,8 +1,7 @@
 WP cheats
 =========
 
-## Invoke `short codes` from template
-`<?php echo do_shortcode("[shortcode]"); ?>`
+These are just some functions and paterns i use in WP tried to keep the order spacific but whatever this is a `copy/paste` dump for WP stuff lol:)
 
 ## get the `URL` of...
 
@@ -61,6 +60,8 @@ function hello_shortcode($atts, $content = null, $tag){
 //add shortcode
 add_shortcode('hello', 'hello_shortcode');
 ```
+### Invoke `short codes` from template
+`<?php echo do_shortcode("[shortcode]"); ?>`
 
 ## Remove the base Open sans from wordpress
 *(to many fonts loaded!)* goes into a `functions.php` file in root of theme
@@ -128,7 +129,7 @@ wp_enqueue_script('site', get_template_directory_uri() . '/assets/javascript/sit
 
 //so the above looks for site.js in assets/javascript, it needs jQuery, is version 1.0.0 and to load jQuery FIRST
 ```
-###to trim post data
+##to trim post data
 ```
 <?php
 function trim_value(&$value){
