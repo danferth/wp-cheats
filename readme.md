@@ -26,6 +26,8 @@ $upload_url = $upload_array['baseurl'];
 
 ## Shortcodes
 
+**NOTE:** shortcode `atts` can NOT be camleCase espesially if you are trying to pass a boolean 
+
 - `$atts` = an associative aray of attributes, or an empty string if no attirbutes are given;
 - `$content` = the enclosed content (if the shorcode is used in its enclosing form)
 - `$tag` = the shortcode tag, usefull for shared callback functions
